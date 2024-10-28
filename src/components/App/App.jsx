@@ -6,16 +6,21 @@ import './App.css';
 const data = [
   'HTML',
   'CSS',
-  "JavaScript",
+  'JavaScript',
   'TypeScript',
   'React',
   'Vue',
   'Angular',
   'NodeJS',
-]
+];
 
 function App() {
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState('');
+  const [items, setItems] = useState(data); // Fixed the typo here
+
+  useEffect(() => {
+    setItems(data.filter(el => el.toLowerCase().includes(search.toLowerCase()))); // Fixed the missing closing parenthesis
+  }, [search]);
 
   return (
     <div className="App">
@@ -23,7 +28,7 @@ function App() {
         <Search value={search} onChange={(e) => setSearch(e.target.value)}>
           Find course:
         </Search>
-        <List items={data} />
+        <List items={items} />
       </div>
     </div>
   );
