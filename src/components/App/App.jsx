@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import List from '../List';
 import Search from '../Search/Search';
 import './App.css';
+import Users from '../users/Users';
 
 const data = [
   'HTML',
@@ -16,10 +17,10 @@ const data = [
 
 function App() {
   const [search, setSearch] = useState('');
-  const [items, setItems] = useState(data); // Fixed the typo here
+  const [items, setItems] = useState(data);
 
   useEffect(() => {
-    setItems(data.filter(el => el.toLowerCase().includes(search.toLowerCase()))); // Fixed the missing closing parenthesis
+    setItems(data.filter(el => el.toLowerCase().includes(search.toLowerCase())));
   }, [search]);
 
   return (
@@ -29,6 +30,7 @@ function App() {
           Find course:
         </Search>
         <List items={items} />
+        <Users />
       </div>
     </div>
   );
